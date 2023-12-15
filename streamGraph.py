@@ -4,10 +4,10 @@ import time
 import numpy as np
 
 # streamlit settings
-time_list = []
-value1_list = []
-value2_list = []
-value3_list = []
+time_list = [time.time()]
+value1_list = [100]
+value2_list = [-100]
+value3_list = [100]
 chart = st.line_chart()
 
 # ------- read serial terminal code -------
@@ -32,16 +32,19 @@ while True:
 #  ------- streamlit code -------
     # Initialize empty lists to store data
     new_time = time.strftime('%H:%M:%S')
+    # new_time = time.time()
     new_value1 = roll
     new_value2 = pitch
     new_value3 = yaw
 
+    # Limit the lists to ... items
+    # if len(value1_list) > 50:
+    #     time_list.pop(0)
+    #     value1_list.pop(0)
+    #     value2_list.pop(0)
+    #     value3_list.pop(0)
+    
     # Append the new data to the lists
-    if len(value1_list) > 20:
-        time_list.pop(0)
-        value1_list.pop(0)
-        value2_list.pop(0)
-        value3_list.pop(0)
     time_list.append(new_time)
     value1_list.append(new_value1)
     value2_list.append(new_value2)
